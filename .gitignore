@@ -11,3 +11,10 @@ pairing-token.txt
 *.cer
 *.p12
 *.pfx
+*.mobileprovision
+*.csr
+
+# Local build and analysis output
+dist/
+graphify-out/
+.env

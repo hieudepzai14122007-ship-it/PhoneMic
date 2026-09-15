@@ -1,0 +1,21 @@
+{
+  "project": "PhoneMic",
+  "platform": "ios",
+  "github": {
+    "owner": "hieudepzai14122007-ship-it",
+    "repo": "PhoneMic"
+  },
+  "provider": "github",
+  "codemagic": {},
+  "bitrise": {},
+  "ios": {
+    "path": "ios",
+    "scheme": "PhoneMic"
+  },
+  "flutter": {
+    "watch": {}
+  },
+  "reactNative": {},
+  "kmp": {},
+  "mobai": {}
+}
