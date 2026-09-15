@@ -1,0 +1,13 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Runtime pairing and TLS material
+pairing-token.txt
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx

@@ -1,0 +1,83 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hướng dẫn PhoneMic Wi-Fi</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f1f5f4;color:#20342f;font:16px/1.65 system-ui,-apple-system,'Segoe UI',sans-serif}
+main{max-width:900px;margin:32px auto;padding:40px 48px;background:#fff;border-radius:20px}h1{font-size:36px;line-height:1.2;letter-spacing:-1px;margin:12px 0}h2{margin:34px 0 12px;font-size:23px}h3{font-size:18px;margin:24px 0 8px}a{color:#16775a}li{padding:4px 0}code{background:#eef3f1;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.tag{color:#16775a;font-size:12px;letter-spacing:2px;font-weight:700}.lead{color:#536c62;font-size:18px}.callout{border-left:4px solid #279b77;background:#eef8f3;padding:16px 20px;border-radius:5px;margin:22px 0}.note{border-left-color:#bd9136;background:#fbf6e9}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px solid #dce6e0;padding:12px;text-align:left;vertical-align:top}th{background:#eef5f1}footer{margin-top:36px;color:#64796f;font-size:13px}@media(max-width:600px){main{margin:0;padding:24px 20px;border-radius:0}h1{font-size:30px}table{font-size:13px}td,th{padding:8px}}@media print{body{background:white}main{margin:0;padding:0;max-width:none}h2,h3{break-after:avoid}li,tr,.callout{break-inside:avoid}a{color:inherit}}
+</style></head><body><main>
+<span class="tag">PHONEMIC WI-FI · 0.2 THỬ NGHIỆM</span>
+<h1>Mic iPhone cho Windows 11</h1>
+<div class="callout"><b>Bản 0.2: tự kết nối lại khi Wi-Fi gián đoạn ngắn.</b> Safari vẫn cần mở màn hình. Phần app iPhone native cho khóa màn hình/cuộc gọi nằm trong <code>ios/PhoneMic.xcodeproj</code>, cần Mac + Xcode để build và ký; chưa kiểm thử trên iPhone thật. Xem <a href="ios/README.md">ios/README.md</a>.<br>Nâng cấp: dừng bản cũ, giải nén bản mới sang thư mục mới và chạy START.cmd. Không chạy hai bộ nhận cùng lúc.</div>
+<p class="lead">Cài một lần. Mỗi lần dùng: mở PhoneMic trên laptop, quét QR trên iPhone và bật mic.</p>
+<div class="callout"><b>Bộ này gồm mã nguồn và file mở nhanh START.cmd.</b> Chưa phải EXE cài một chạm hay app trên App Store. Lần đầu cần Python, VB-CABLE và cài chứng chỉ trên iPhone. Bản này nhắm tới Windows 11 x64; Windows ARM64 chưa được kiểm tra.</div>
+<h2>1. Chuẩn bị laptop</h2>
+<ol>
+<li><b>Giải nén toàn bộ</b> file ZIP vào một thư mục như <code>Documents\PhoneMic-WiFi</code>. Không chạy trực tiếp bên trong ZIP.</li>
+<li>Cài <a href="https://www.python.org/downloads/windows/">Python từ trang chính thức</a>. Chọn bản 3.13 hoặc 3.12 cho Windows; bật <b>Add python.exe to PATH</b> và giữ thành phần <b>Tcl/Tk</b> (giao diện cửa sổ). Nếu đã có Python 3.12–3.14 thì bỏ qua bước này.</li>
+<li>Mở <a href="https://vb-audio.com/Cable/">trang VB-CABLE chính thức</a>, tải bản Windows. Giải nén gói driver, chạy trình cài đúng kiến trúc máy với <b>Run as administrator</b>, chọn cài driver theo hướng dẫn hãng. <b>Khởi động lại Windows</b>. Gói PhoneMic không kèm driver này.</li>
+<li>Nối laptop và iPhone vào <b>cùng Wi-Fi</b>. Dùng mạng nhà; Wi-Fi khách có thể chặn các thiết bị giao tiếp với nhau. Laptop cắm LAN cùng router cũng dùng được nếu mạng cho phép.</li>
+<li>Mở <b>START.cmd</b>. Lần đầu chương trình tải các thư viện Python vào thư mục <code>.venv</code>; cần Internet ở bước này. Các lần sau mở lại cùng file.</li>
+</ol>
+<p>Nếu Windows thông báo chặn file vừa tải, kiểm tra nguồn file và nội dung mã nguồn trước khi chạy; không cần tắt phần mềm bảo vệ hoặc tường lửa toàn hệ thống.</p>
+<h2>2. Bắt đầu nhận trên Windows</h2>
+<ol>
+<li>Trong PhoneMic, chọn <b>IP Wi-Fi của laptop</b>. Nếu máy có VPN/card mạng ảo, có thể cần chọn IP khác. Mở Terminal và gõ <code>ipconfig</code>, tìm <b>IPv4 Address</b> dưới card Wi-Fi đang dùng.</li>
+<li>Ở <b>Gửi âm thanh vào</b>, chọn <b>CABLE Input · Windows WASAPI</b> nếu có. Có thể dùng mục CABLE Input khác nếu WASAPI không mở được.</li>
+<li>Nhấn <b>Bắt đầu nhận mic</b>. Chờ hai mã QR xuất hiện.</li>
+<li>Nếu Windows hỏi cho phép Python giao tiếp qua tường lửa, chỉ cho phép trên mạng <b>Private</b> mà bạn tin cậy. Nếu mạng nhà đang đặt Public, có thể đổi cấu hình mạng nhà thành Private trong cài đặt Wi-Fi của Windows.</li>
+</ol>
+<div class="callout"><b>Hai tên dễ nhầm:</b><br>PhoneMic gửi tiếng vào <b>CABLE Input</b>.<br>Zoom, Discord, Zalo hoặc ứng dụng cần mic chọn <b>CABLE Output</b>.<br>Giữ thiết bị loa/tai nghe bình thường; không đặt loa mặc định thành CABLE Input.</div>
+<h2>3. Cài iPhone lần đầu</h2>
+<p>Safari cần HTTPS để cấp quyền mic. PhoneMic tự tạo một chứng chỉ riêng cho laptop, cần cài và bật tin cậy trên iPhone.</p>
+<ol>
+<li>Mở <b>Camera iPhone</b>, quét <b>QR 1 — Cài iPhone lần đầu</b>, mở trang trong Safari.</li>
+<li>Đối chiếu tên <b>PhoneMic Local …</b> trên trang với tên trong cửa sổ laptop. Nhấn <b>Tải hồ sơ chứng chỉ</b> → cho phép tải.</li>
+<li>Mở <b>Cài đặt → Cài đặt chung → VPN &amp; Quản lý thiết bị</b>. Chọn hồ sơ PhoneMic vừa tải, nhấn <b>Cài đặt</b>. Một số phiên bản iOS có mục <b>Đã tải về hồ sơ</b> ngay trong trang Cài đặt. iPhone có thể yêu cầu mật mã máy. Hồ sơ tự tạo chưa được ký phân phối có thể hiện “Chưa được ký”.</li>
+<li>Vào <b>Cài đặt → Cài đặt chung → Giới thiệu → Cài đặt tin cậy chứng nhận</b>. Bật tin cậy cho đúng chứng chỉ <b>PhoneMic Local …</b> vừa cài. Tên mục có thể khác nhẹ theo ngôn ngữ iOS.</li>
+<li>Quay lại Camera, quét <b>QR 2 — Bật mic</b> trên laptop và mở bằng Safari. Đường dẫn này bắt đầu bằng <b>https://</b>.</li>
+</ol>
+<div class="callout note"><b>Ý nghĩa của việc tin cậy:</b> iPhone sẽ tin các chứng chỉ HTTPS được ký bởi khóa riêng của laptop này. Chỉ làm trên laptop và Wi-Fi bạn tin cậy. Hồ sơ chỉ chứa chứng chỉ, không có VPN, proxy hay quản lý thiết bị. Đừng gửi thư mục <code>%LOCALAPPDATA%\PhoneMic-WiFi\certificates</code> cho người khác. Khi gỡ ứng dụng, xóa hồ sơ PhoneMic trên iPhone.</div>
+<p>Nếu Safari còn cảnh báo chứng chỉ, kiểm tra lại bước bật tin cậy, ngày giờ hai máy và IP đã chọn; chỉ bỏ qua cảnh báo không bảo đảm Safari cho dùng mic.</p>
+<h2>4. Dùng mic mỗi ngày</h2>
+<ol>
+<li>Windows: mở <b>START.cmd → Bắt đầu nhận mic</b>.</li>
+<li>iPhone: quét <b>QR 2</b> mới, nhấn <b>Bật mic</b>, chọn <b>Cho phép</b> Safari truy cập mic.</li>
+<li>Nói thử. Thanh âm lượng trên iPhone và laptop cần chuyển động.</li>
+<li>Trong ứng dụng cần dùng mic, chọn <b>CABLE Output</b>. Nếu dùng mic trong trình duyệt laptop, cho phép trang truy cập mic và chọn đúng thiết bị trong cài đặt của trang/ứng dụng.</li>
+<li>Nhấn <b>Tắt tiếng</b> để tạm im lặng; nhấn lại để bật tiếng. Kéo Âm lượng nếu tiếng nhỏ, giảm xuống nếu bị vỡ.</li>
+<li>Khi xong, nhấn <b>Dừng mic</b> trên iPhone hoặc <b>Dừng</b>/đóng cửa sổ PhoneMic trên Windows.</li>
+</ol>
+<p><b>Giữ Safari ở phía trước và màn hình iPhone sáng.</b> Bản này chủ động dừng khi rời Safari. Khóa màn hình, nhận cuộc gọi hoặc mất mạng cũng có thể ngắt. Khi quay lại, nhấn Bật mic; nếu IP laptop thay đổi hoặc đã Quên ghép nối, quét QR mới. Wake Lock có thể hỗ trợ giữ màn hình sáng, nhưng không được bảo đảm trên mọi iPhone.</p>
+<h2>5. Kiểm tra trên thiết bị thật</h2>
+<ol>
+<li>Trong Windows: <b>Cài đặt → Hệ thống → Âm thanh → Đầu vào → CABLE Output</b>. Nói thử và kiểm tra thanh mức âm lượng; có thể dùng ứng dụng Sound Recorder để ghi 10 giây và nghe lại.</li>
+<li>Thử <b>Tắt tiếng</b>: thanh mức âm lượng phải về 0 sau khi hết phần đệm ngắn.</li>
+<li>Rời Safari hoặc tắt Wi-Fi iPhone: phiên phải ngắt, không lặp lại tiếng cũ. Trở lại và nhấn Bật mic.</li>
+<li>Dừng Windows rồi Bắt đầu lại: nhấn Bật mic trên iPhone để nối lại; QR cũ còn dùng được nếu IP và ghép nối không thay đổi.</li>
+</ol>
+<p>Ứng dụng PhoneMic không lưu âm thanh. Nếu bạn chủ động ghi thử bằng Sound Recorder thì chính ứng dụng đó sẽ lưu bản ghi.</p>
+<h2>6. Xử lý lỗi thường gặp</h2>
+<table><thead><tr><th>Hiện tượng</th><th>Cách xử lý</th></tr></thead><tbody>
+<tr><td>START.cmd yêu cầu Python</td><td>Cài Python 3.12/3.13, bật PATH; đóng cửa sổ cũ rồi chạy lại. Không dùng Python 3.15 trong gói này.</td></tr>
+<tr><td>Lỗi tải thư viện</td><td>Kiểm tra Internet. Chạy START.cmd lại sẽ thử cài tiếp. Nếu môi trường cài bị lỗi, đóng PhoneMic, xóa riêng thư mục <code>.venv</code> trong thư mục ứng dụng và mở lại START.cmd.</td></tr>
+<tr><td>Không thấy CABLE Input</td><td>Cài VB-CABLE và khởi động lại Windows, sau đó mở lại PhoneMic. Không chọn nhầm CABLE Output ở bộ nhận.</td></tr>
+<tr><td>Không mở được trang trên iPhone</td><td>Kiểm tra đúng IP/cùng LAN; tắt kết nối VPN đang đổi tuyến nếu cần; không dùng guest Wi-Fi có client isolation. Cho phép Python trên mạng Private trong Windows Firewall. PhoneMic cần TCP 8765 và 8766 trong LAN; không cần mở cổng router.</td></tr>
+<tr><td>Cần tạo quy tắc tường lửa thủ công</td><td>Windows Defender Firewall with Advanced Security → Inbound Rules → New Rule → Custom. Chọn chương trình <code>.venv\Scripts\python.exe</code> của PhoneMic, TCP local ports <code>8765,8766</code>, remote IP <b>Local subnet</b>, Allow, chỉ profile <b>Private</b>. Đặt tên PhoneMic Wi-Fi. Không tắt cả tường lửa.</td></tr>
+<tr><td>Không bật được mic trên Safari</td><td>Hoàn tất cài hồ sơ và bật tin cậy; mở QR 2 HTTPS trong Safari. Cho phép mic trong cài đặt trang web của Safari. Đóng ứng dụng/cuộc gọi khác đang chiếm mic.</td></tr>
+<tr><td>Thanh mic chạy nhưng ứng dụng không nghe</td><td>Chọn Microphone = CABLE Output trong ứng dụng. Trong Windows bật quyền truy cập mic cho ứng dụng/desktop apps. Kiểm tra ứng dụng có đang mute không.</td></tr>
+<tr><td>Lỗi mở thiết bị / Invalid sample rate</td><td>Đóng ứng dụng đang dùng độc quyền CABLE. Trong More sound settings → Playback CABLE Input và Recording CABLE Output → Properties → Advanced, thử đặt cả hai 48.000 Hz; mở lại PhoneMic.</td></tr>
+<tr><td>Tiếng trễ hoặc ngắt</td><td>Đến gần router, thử Wi-Fi 5 GHz nếu sóng tốt, giảm tải mạng. Chọn WASAPI trên Windows. Gói này không cam kết độ trễ đầu cuối.</td></tr>
+<tr><td>Tiếng vọng</td><td>Dùng tai nghe trên laptop để mic iPhone không thu lại loa. Không bật “Listen to this device” cho CABLE Output.</td></tr>
+<tr><td>IP đổi / QR cũ không dùng được</td><td>Nếu IP thay đổi: Dừng rồi chọn IP mới và Bắt đầu lại, quét QR 2 mới. Chứng chỉ gốc của cùng laptop được giữ nguyên nên bình thường không cần cài lại hồ sơ.</td></tr>
+<tr><td>Address already in use / WinError 10048</td><td>Đóng phiên PhoneMic khác đang chạy; nếu cổng 8765/8766 do ứng dụng khác dùng, chưa chạy được cùng lúc với bản này. Không tự dừng tiến trình không rõ.</td></tr>
+</tbody></table>
+<h2>7. Gỡ bỏ hoặc đặt lại chứng chỉ</h2>
+<ul>
+<li>Dừng PhoneMic và đóng cửa sổ. Xóa thư mục đã giải nén để gỡ mã nguồn và môi trường Python riêng của ứng dụng.</li>
+<li>iPhone: Cài đặt → Cài đặt chung → VPN &amp; Quản lý thiết bị → đúng hồ sơ PhoneMic Local … → Xóa hồ sơ.</li>
+<li>Xóa riêng <code>%LOCALAPPDATA%\PhoneMic-WiFi</code> để bỏ chứng chỉ/khóa của ứng dụng nếu không dùng nữa. Đừng xóa các thư mục khác trong LocalAppData.</li>
+<li>Nếu tự tạo quy tắc Windows Firewall tên PhoneMic Wi-Fi, xóa quy tắc đó. VB-CABLE và Python là thành phần riêng, chỉ gỡ nếu các ứng dụng khác không cần.</li>
+<li><b>Đặt lại chứng chỉ:</b> dừng ứng dụng, xóa hồ sơ cũ trên iPhone và thư mục chứng chỉ riêng nói trên; mở lại và làm bước 3 với chứng chỉ mới.</li>
+</ul>
+<h2>Phạm vi đã kiểm tra</h2>
+<p>Đã qua 14 kiểm thử Python và kiểm thử mô phỏng trình duyệt về PCM, TLS, ghép nối, kết nối lại, tắt tiếng, Stop và loại bỏ âm thanh cũ. Chưa biên dịch hoặc kiểm thử phần native iPhone. <b>Chưa chạy kiểm thử đầu cuối trên iPhone thật và Windows 11/VB-CABLE</b>; chưa đo độ trễ hoặc chất lượng tiếng thực tế. Xem <code>TEST-REPORT.md</code> trong gói.</p>
+<footer>Nguồn hướng dẫn nền tảng: <a href="https://support.apple.com/en-us/102390">Apple — tin cậy chứng chỉ cài thủ công</a> · <a href="https://webkit.org/blog/7763/a-closer-look-into-webrtc/">WebKit — HTTPS và quyền thu mic</a> · <a href="https://vb-audio.com/Cable/">VB-Audio — VB-CABLE</a>. Các trang tải và giấy phép thuộc nhà cung cấp tương ứng.</footer>
+</main></body></html>

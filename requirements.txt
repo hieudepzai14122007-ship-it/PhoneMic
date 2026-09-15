@@ -1,0 +1,6 @@
+aiohttp>=3.13.5,<4
+cryptography>=46.0.0,<48
+numpy>=2.2,<3
+sounddevice>=0.5.3,<0.6
+qrcode[pil]>=8.2,<9
+Pillow>=11,<13

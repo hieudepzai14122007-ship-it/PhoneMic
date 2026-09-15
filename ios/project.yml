@@ -1,0 +1,43 @@
+name: PhoneMic
+options:
+  deploymentTarget:
+    iOS: '16.0'
+settings:
+  base:
+    SWIFT_VERSION: '5.0'
+    TARGETED_DEVICE_FAMILY: '1'
+    PRODUCT_BUNDLE_IDENTIFIER: com.example.PhoneMic
+    MARKETING_VERSION: '0.2'
+    CURRENT_PROJECT_VERSION: '2'
+    GENERATE_INFOPLIST_FILE: NO
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+targets:
+  PhoneMic:
+    type: application
+    platform: iOS
+    sources: [PhoneMic]
+    info:
+      path: PhoneMic/Info.plist
+      properties:
+        CFBundleDisplayName: PhoneMic
+        UILaunchScreen: {}
+        NSMicrophoneUsageDescription: Send your voice to your paired Windows computer while you choose to stream.
+        NSCameraUsageDescription: Scan the pairing QR displayed by your Windows receiver.
+        NSLocalNetworkUsageDescription: Connect directly to your paired computer over your local Wi-Fi.
+        UIBackgroundModes: [audio]
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+    scheme:
+      testTargets: [PhoneMicTests]
+  PhoneMicTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [PhoneMicTests]
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.PhoneMicTests
+    dependencies:
+      - target: PhoneMic
